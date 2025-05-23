@@ -1,0 +1,20 @@
+<script>
+  // Имитация успешной авторизации
+  setTimeout(() => {
+    const message = {
+      type: 'authCode',
+      code: '123456',
+    };
+
+    if (window.webkit?.messageHandlers?.cordova_iab) {
+      // iOS
+      window.webkit.messageHandlers.cordova_iab.postMessage(message);
+    } else if (window.cordova_iab) {
+      // Android
+      window.cordova_iab.postMessage(message);
+    } else if (window.parent) {
+      // fallback для браузера
+      window.parent.postMessage(message, '*');
+    }
+  }, 2000);
+</script>
