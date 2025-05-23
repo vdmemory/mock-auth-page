@@ -5,7 +5,9 @@
     <title>Mock Auth Redirect</title>
     <script>
       // Автоматический редирект на схему приложения с кодом авторизации
-      window.location.href = "myapp://auth?code=123456";
+      setTimeout(() => {
+        window.location.replace('myapp://auth?code=123456');
+      }, 100);
     </script>
   </head>
   <body>
