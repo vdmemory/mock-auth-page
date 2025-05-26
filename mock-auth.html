@@ -1,22 +1,49 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Mock Auth Redirect</title>
-    <script>
-  const url = new URL(window.location.href);
-  const redirectUri = url.searchParams.get('redirect_uri') || 'myapp://auth';
-  const code = 'example_auth_code_123';
-  window.location.href = `${redirectUri}?code=${code}`;
-</script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mock Deep Link Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Deep Link Test</h1>
+  <p>Нажмите кнопку</p>
+  <button onclick="handleLogin()">Кнопка)</button>
+
+  <script>
+    function handleLogin() {
+      const redirectUri = getRedirectUri();
+      const code = 'mock-auth-code-123456';
+      const finalUrl = `${redirectUri}?code=${code}`;
+      window.location.href = finalUrl;
+    }
+
+    function getRedirectUri() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('redirect_uri') || 'myapp://auth';
+    }
+  </script>
+</body>
+</html>
+
 <!--     <script>
       // Автоматический редирект на схему приложения с кодом авторизации
       setTimeout(() => {
         window.location.replace('myapp://auth?code=123456');
       }, 100);
     </script> -->
-  </head>
-  <body>
-    <p>Перенаправление...</p>
-  </body>
-</html>
